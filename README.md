@@ -1,2 +1,2 @@
 # consolidate-directory
-Consolidates files in subdirectories, filtered by pattern.
+Consolidates all files in a directory (including subdirectories). Can be filtered by pattern.
