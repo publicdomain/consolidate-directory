@@ -8,6 +8,7 @@ namespace ConsolidateDirectory
     // Directives
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Drawing;
     using System.Windows.Forms;
     using Microsoft.Win32;
@@ -63,7 +64,8 @@ namespace ConsolidateDirectory
         /// <param name="e">Event arguments.</param>
         private void OnDailyReleasesPublicDomainDailycomToolStripMenuItemClick(object sender, EventArgs e)
         {
-            // TODO Add code
+            // Open current website
+            Process.Start("https://publicdomaindaily.com");
         }
 
         /// <summary>
