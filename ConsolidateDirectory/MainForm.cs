@@ -82,7 +82,25 @@ namespace ConsolidateDirectory
         /// <param name="e">Event arguments.</param>
         private void OnRemoveButtonClick(object sender, EventArgs e)
         {
-            // TODO Add code
+            try
+            {
+                // Remove consolidate command to registry
+                Registry.CurrentUser.DeleteSubKeyTree(@"Software\Classes\directory\shell\Consolidate");
+
+                // Remove icon
+                File.Delete(this.iconFileName);
+
+                // Update status
+                this.activityToolStripStatusLabel.Text = "Inactive";
+
+                // Notify user
+                MessageBox.Show("Consolidate command removed from registry!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                // Notify user
+                MessageBox.Show($"Error when removing consolidate command from registry.{Environment.NewLine}{Environment.NewLine}Message:{Environment.NewLine}{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         /// <summary>
