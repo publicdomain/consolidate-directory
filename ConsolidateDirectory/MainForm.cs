@@ -10,6 +10,7 @@ namespace ConsolidateDirectory
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Drawing;
+    using System.IO;
     using System.Windows.Forms;
     using Microsoft.Win32;
 
@@ -18,6 +19,11 @@ namespace ConsolidateDirectory
     /// </summary>
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// The name of the icon file.
+        /// </summary>
+        private string iconFileName = "cd-menu-icon.ico";
+
         /// <summary>
         /// Initializes a new instance of the <see cref="T:ConsolidateDirectory.MainForm"/> class.
         /// </summary>
@@ -34,7 +40,39 @@ namespace ConsolidateDirectory
         /// <param name="e">Event arguments.</param>
         private void OnAddButtonClick(object sender, EventArgs e)
         {
-            // TODO Add code
+            try
+            {
+                // Add consolidate command to registry
+                RegistryKey registryKey;
+                registryKey = Registry.CurrentUser.CreateSubKey(@"Software\Classes\directory\shell\Consolidate");
+                registryKey.SetValue("icon", $"{Path.Combine(Application.StartupPath, this.iconFileName)}");
+                registryKey.SetValue("position", "Top");
+                registryKey = Registry.CurrentUser.CreateSubKey(@"Software\Classes\directory\shell\Consolidate\command");
+                registryKey.SetValue(string.Empty, $"{Path.Combine(Application.StartupPath, Application.ExecutablePath)} \"%1\"");
+                registryKey.Close();
+
+                // Create icon if it does not exist
+                if (!File.Exists(this.iconFileName))
+                {
+                    // Use file stream
+                    using (FileStream fileStream = File.Create(this.iconFileName))
+                    {
+                        // Save main form icon to file
+                        this.Icon.Save(fileStream);
+                    }
+                }
+
+                // Update status
+                this.activityToolStripStatusLabel.Text = "Active";
+
+                // Notify user
+                MessageBox.Show($"Consolidate command added to registry!{Environment.NewLine}{Environment.NewLine}Right-click directory on Windows Explorer to use.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                // Notify user
+                MessageBox.Show($"Error when adding consolidate command to registry.{Environment.NewLine}{Environment.NewLine}Message:{Environment.NewLine}{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         /// <summary>
