@@ -31,6 +31,9 @@ namespace ConsolidateDirectory
         {
             // The InitializeComponent() call is required for Windows Forms designer support.
             this.InitializeComponent();
+
+            // Update the program by consolidate key
+            this.UpdateByConsolidateRegistryKey();
         }
 
         /// <summary>
@@ -62,8 +65,8 @@ namespace ConsolidateDirectory
                     }
                 }
 
-                // Update status
-                this.activityToolStripStatusLabel.Text = "Active";
+                // Update the program by consolidate key
+                this.UpdateByConsolidateRegistryKey();
 
                 // Notify user
                 MessageBox.Show($"Consolidate command added to registry!{Environment.NewLine}{Environment.NewLine}Right-click directory on Windows Explorer to use.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -90,8 +93,8 @@ namespace ConsolidateDirectory
                 // Remove icon
                 File.Delete(this.iconFileName);
 
-                // Update status
-                this.activityToolStripStatusLabel.Text = "Inactive";
+                // Update the program by consolidate key
+                this.UpdateByConsolidateRegistryKey();
 
                 // Notify user
                 MessageBox.Show("Consolidate command removed from registry!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -100,6 +103,40 @@ namespace ConsolidateDirectory
             {
                 // Notify user
                 MessageBox.Show($"Error when removing consolidate command from registry.{Environment.NewLine}{Environment.NewLine}Message:{Environment.NewLine}{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Updates the program by consolidate registry key.
+        /// </summary>
+        private void UpdateByConsolidateRegistryKey()
+        {
+            // Try to set consolidate key
+            using (var consolidateKey = Registry.CurrentUser.OpenSubKey(@"Software\Classes\directory\shell\Consolidate"))
+            {
+                // Check for no returned registry key
+                if (consolidateKey == null)
+                {
+                    // Disable remove button
+                    this.removeButton.Enabled = false;
+
+                    // Enable add button
+                    this.addButton.Enabled = true;
+
+                    // Update status text
+                    this.activityToolStripStatusLabel.Text = "Inactive";
+                }
+                else
+                {
+                    // Disable add button
+                    this.addButton.Enabled = false;
+
+                    // Enable remove button
+                    this.removeButton.Enabled = true;
+
+                    // Update status text
+                    this.activityToolStripStatusLabel.Text = "Active";
+                }
             }
         }
 
