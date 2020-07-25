@@ -18,7 +18,8 @@ namespace ConsolidateDirectory
         /// <summary>
         /// Initializes a new instance of the <see cref="T:ConsolidateDirectory.ConsolidateDirectoryForm"/> class.
         /// </summary>
-        public ConsolidateDirectoryForm()
+        /// <param name="directoryPath">Directory path.</param>
+        public ConsolidateDirectoryForm(string directoryPath)
         {
             // The InitializeComponent() call is required for Windows Forms designer support.
             this.InitializeComponent();

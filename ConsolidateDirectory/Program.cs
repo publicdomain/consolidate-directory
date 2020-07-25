@@ -22,7 +22,18 @@ namespace ConsolidateDirectory
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+
+            // Check for args
+            if (args.Length > 0)
+            {
+                // Consolidate menu
+                Application.Run(new ConsolidateDirectoryForm(args[0]));
+            }
+            else
+            {
+                // Regular execution
+                Application.Run(new MainForm());
+            }
         }
 
     }
