@@ -31,6 +31,12 @@ namespace ConsolidateDirectory
 
             // Set icon
             this.Icon = this.mainForm.Icon;
+
+            // Map event handlers to main form
+            this.dailyReleasesPublicDomainDailycomToolStripMenuItem.Click += new System.EventHandler(this.mainForm.OnDailyReleasesPublicDomainDailycomToolStripMenuItemClick);
+            this.originalThreadDonationCodercomToolStripMenuItem.Click += new System.EventHandler(this.mainForm.OnOriginalThreadDonationCodercomToolStripMenuItemClick);
+            this.sourceCodeGithubcomToolStripMenuItem.Click += new System.EventHandler(this.mainForm.OnSourceCodeGithubcomToolStripMenuItemClick);
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.mainForm.OnAboutToolStripMenuItemClick);
         }
 
         /// <summary>
@@ -72,46 +78,6 @@ namespace ConsolidateDirectory
         {
             // Close application
             this.Close();
-        }
-
-        /// <summary>
-        /// Handles the daily releases public domain dailycom tool strip menu item click event.
-        /// </summary>
-        /// <param name="sender">Sender object.</param>
-        /// <param name="e">Event arguments.</param>
-        private void OnDailyReleasesPublicDomainDailycomToolStripMenuItemClick(object sender, EventArgs e)
-        {
-            // TODO Add code
-        }
-
-        /// <summary>
-        /// Handles the original thread donation codercom tool strip menu item click event.
-        /// </summary>
-        /// <param name="sender">Sender object.</param>
-        /// <param name="e">Event arguments.</param>
-        private void OnOriginalThreadDonationCodercomToolStripMenuItemClick(object sender, EventArgs e)
-        {
-            // TODO Add code
-        }
-
-        /// <summary>
-        /// Handles the source code githubcom tool strip menu item click event.
-        /// </summary>
-        /// <param name="sender">Sender object.</param>
-        /// <param name="e">Event arguments.</param>
-        private void OnSourceCodeGithubcomToolStripMenuItemClick(object sender, EventArgs e)
-        {
-            // TODO Add code
-        }
-
-        /// <summary>
-        /// Handles the about tool strip menu item click event.
-        /// </summary>
-        /// <param name="sender">Sender object.</param>
-        /// <param name="e">Event arguments.</param>
-        private void OnAboutToolStripMenuItemClick(object sender, EventArgs e)
-        {
-            // TODO Add code
         }
     }
 }

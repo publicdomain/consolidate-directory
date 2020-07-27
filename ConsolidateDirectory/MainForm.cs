@@ -155,7 +155,7 @@ namespace ConsolidateDirectory
         /// </summary>
         /// <param name="sender">Sender object.</param>
         /// <param name="e">Event arguments.</param>
-        internal void OnExitToolStripMenuItemClick(object sender, EventArgs e)
+        private void OnExitToolStripMenuItemClick(object sender, EventArgs e)
         {
             // Close application
             this.Close();
