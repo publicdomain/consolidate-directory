@@ -16,6 +16,11 @@ namespace ConsolidateDirectory
     public partial class ConsolidateDirectoryForm : Form
     {
         /// <summary>
+        /// The main form.
+        /// </summary>
+        MainForm mainForm = new MainForm();
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="T:ConsolidateDirectory.ConsolidateDirectoryForm"/> class.
         /// </summary>
         /// <param name="directoryPath">Directory path.</param>
@@ -23,6 +28,9 @@ namespace ConsolidateDirectory
         {
             // The InitializeComponent() call is required for Windows Forms designer support.
             this.InitializeComponent();
+
+            // Set icon
+            this.Icon = this.mainForm.Icon;
         }
 
         /// <summary>
