@@ -29,7 +29,7 @@ namespace ConsolidateDirectory
         /// <summary>
         /// The associated icon.
         /// </summary>
-        private Icon associatedIcon = null;
+        internal Icon associatedIcon = null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:ConsolidateDirectory.MainForm"/> class.
@@ -38,6 +38,9 @@ namespace ConsolidateDirectory
         {
             // The InitializeComponent() call is required for Windows Forms designer support.
             this.InitializeComponent();
+
+            // Set associated icon from exe file
+            this.associatedIcon = Icon.ExtractAssociatedIcon(typeof(MainForm).GetTypeInfo().Assembly.Location);
 
             // Update the program by consolidate key
             this.UpdateByConsolidateRegistryKey();
@@ -152,7 +155,7 @@ namespace ConsolidateDirectory
         /// </summary>
         /// <param name="sender">Sender object.</param>
         /// <param name="e">Event arguments.</param>
-        private void OnExitToolStripMenuItemClick(object sender, EventArgs e)
+        internal void OnExitToolStripMenuItemClick(object sender, EventArgs e)
         {
             // Close application
             this.Close();
@@ -163,7 +166,7 @@ namespace ConsolidateDirectory
         /// </summary>
         /// <param name="sender">Sender object.</param>
         /// <param name="e">Event arguments.</param>
-        private void OnDailyReleasesPublicDomainDailycomToolStripMenuItemClick(object sender, EventArgs e)
+        internal void OnDailyReleasesPublicDomainDailycomToolStripMenuItemClick(object sender, EventArgs e)
         {
             // Open current website
             Process.Start("https://publicdomaindaily.com");
@@ -174,7 +177,7 @@ namespace ConsolidateDirectory
         /// </summary>
         /// <param name="sender">Sender object.</param>
         /// <param name="e">Event arguments.</param>
-        private void OnOriginalThreadDonationCodercomToolStripMenuItemClick(object sender, EventArgs e)
+        internal void OnOriginalThreadDonationCodercomToolStripMenuItemClick(object sender, EventArgs e)
         {
             // Open original thread @ DonationCoder
             Process.Start("https://www.donationcoder.com/forum/index.php?topic=46630.0");
@@ -185,7 +188,7 @@ namespace ConsolidateDirectory
         /// </summary>
         /// <param name="sender">Sender object.</param>
         /// <param name="e">Event arguments.</param>
-        private void OnSourceCodeGithubcomToolStripMenuItemClick(object sender, EventArgs e)
+        internal void OnSourceCodeGithubcomToolStripMenuItemClick(object sender, EventArgs e)
         {
             // Open GitHub
             Process.Start("https://github.com/publicdomain");
@@ -196,7 +199,7 @@ namespace ConsolidateDirectory
         /// </summary>
         /// <param name="sender">Sender object.</param>
         /// <param name="e">Event arguments.</param>
-        private void OnAboutToolStripMenuItemClick(object sender, EventArgs e)
+        internal void OnAboutToolStripMenuItemClick(object sender, EventArgs e)
         {
             // Set license text
             var licenseText = $"CC0 1.0 Universal (CC0 1.0) - Public Domain Dedication{Environment.NewLine}" +

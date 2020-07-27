@@ -35,6 +35,5 @@ namespace ConsolidateDirectory
                 Application.Run(new MainForm());
             }
         }
-
     }
 }
