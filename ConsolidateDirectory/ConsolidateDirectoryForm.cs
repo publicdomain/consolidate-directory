@@ -7,7 +7,8 @@ namespace ConsolidateDirectory
 {
     // Directives
     using System;
-    using System.Drawing;
+    using System.IO;
+    using System.Linq;
     using System.Windows.Forms;
 
     /// <summary>
@@ -18,7 +19,17 @@ namespace ConsolidateDirectory
         /// <summary>
         /// The main form.
         /// </summary>
-        MainForm mainForm = new MainForm();
+        private MainForm mainForm = new MainForm();
+
+        /// <summary>
+        /// The directory path.
+        /// </summary>
+        private string directoryPath;
+
+        /// <summary>
+        /// The directory file string array.
+        /// </summary>
+        private string[] directoryFileStringArray;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:ConsolidateDirectory.ConsolidateDirectoryForm"/> class.
@@ -31,6 +42,9 @@ namespace ConsolidateDirectory
 
             // Set icon
             this.Icon = this.mainForm.Icon;
+
+            // Set directory path
+            this.directoryPath = directoryPath;
 
             // Map event handlers to main form
             this.dailyReleasesPublicDomainDailycomToolStripMenuItem.Click += new System.EventHandler(this.mainForm.OnDailyReleasesPublicDomainDailycomToolStripMenuItemClick);
@@ -78,6 +92,28 @@ namespace ConsolidateDirectory
         {
             // Close application
             this.Close();
+        }
+
+        /// <summary>
+        /// Handles the consolidate directory form shown event.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Event arguments.</param>
+        private void OnConsolidateDirectoryFormShown(object sender, EventArgs e)
+        {
+            // TODO Add code
+        }
+
+        /// <summary>
+        /// Sets the directory file string array and update file count.
+        /// </summary>
+        private void SetDirectoryFileStringArrayAndUpdateFileCount()
+        {
+            // Set directory file string array
+            this.directoryFileStringArray = Directory.GetFiles(this.directoryPath, this.patternTextBox.Text, SearchOption.AllDirectories);
+
+            // Update file count
+            this.countToolStripStatusLabel.Text = this.directoryFileStringArray.Count().ToString();
         }
     }
 }
