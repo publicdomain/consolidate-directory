@@ -101,7 +101,8 @@ namespace ConsolidateDirectory
         /// <param name="e">Event arguments.</param>
         private void OnConsolidateDirectoryFormShown(object sender, EventArgs e)
         {
-            // TODO Add code
+            // Update file count while setting directory file string array
+            this.SetDirectoryFileStringArrayAndUpdateFileCount();
         }
 
         /// <summary>
