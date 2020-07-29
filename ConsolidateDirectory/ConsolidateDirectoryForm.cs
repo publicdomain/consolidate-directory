@@ -74,16 +74,6 @@ namespace ConsolidateDirectory
         }
 
         /// <summary>
-        /// Handles the pattern text box leave event.
-        /// </summary>
-        /// <param name="sender">Sender object.</param>
-        /// <param name="e">Event arguments.</param>
-        private void OnPatternTextBoxLeave(object sender, EventArgs e)
-        {
-            // TODO Add code
-        }
-
-        /// <summary>
         /// Handles the exit tool strip menu item click event.
         /// </summary>
         /// <param name="sender">Sender object.</param>
@@ -115,6 +105,20 @@ namespace ConsolidateDirectory
 
             // Update file count
             this.countToolStripStatusLabel.Text = this.directoryFileStringArray.Count().ToString();
+        }
+
+        /// <summary>
+        /// Handles the pattern text box text changed event.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="e">Event arguments.</param>C
+        private void OnPatternTextBoxTextChanged(object sender, EventArgs e)
+        {
+            // Update status label
+            this.countToolStripStatusLabel.Text = "Calculating...";
+
+            // Update file count while setting directory file string array
+            this.SetDirectoryFileStringArrayAndUpdateFileCount();
         }
     }
 }

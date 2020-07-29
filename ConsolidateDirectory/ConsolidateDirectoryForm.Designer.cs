@@ -181,7 +181,7 @@ namespace ConsolidateDirectory
             this.patternTextBox.Size = new System.Drawing.Size(238, 20);
             this.patternTextBox.TabIndex = 0;
             this.patternTextBox.Text = "*.*";
-            this.patternTextBox.Leave += new System.EventHandler(this.OnPatternTextBoxLeave);
+            this.patternTextBox.TextChanged += new System.EventHandler(this.OnPatternTextBoxTextChanged);
             // 
             // patternReferenceLinkLabel
             // 
