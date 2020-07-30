@@ -70,7 +70,8 @@ namespace ConsolidateDirectory
         /// <param name="e">Event arguments.</param>
         private void OnPatternReferenceLinkLabelLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            // TODO Add code
+            // Inform user
+            MessageBox.Show($"* (asterisk) = zero or more characters.{Environment.NewLine}? (question mark) = one (1) of any character.{Environment.NewLine}{Environment.NewLine}All other valid characters are literal.{Environment.NewLine}{Environment.NewLine}? (question mark) note: It is officially documented as matching zero or one, yet in most platforms/implementations matches exactly one (1) character. Please check behavior when using.", "File pattern", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         /// <summary>
